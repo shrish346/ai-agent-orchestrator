@@ -1,6 +1,7 @@
 defmodule AgentKillSwitchWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :agent_kill_switch
 
+  plug CORSPlug
 
   socket "/socket", AgentKillSwitchWeb.UserSocket,
     websocket: true,
@@ -24,5 +25,21 @@ defmodule AgentKillSwitchWeb.Endpoint do
     plug Phoenix.CodeReloader
   end
 
-  plug Phoenix.Router, router: AgentKillSwitchWeb.Router
+  plug Plug.RequestId
+  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+
+  plug Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json],
+    pass: ["*/*"],
+    json_decoder: Phoenix.json_library()
+
+  plug Plug.MethodOverride
+  plug Plug.Head
+  plug Plug.Session,
+    store: :cookie,
+    key: "_agent_kill_switch_key",
+    signing_salt: "L+j0V+rL",
+    same_site: "Lax"
+
+  plug AgentKillSwitchWeb.Router
 end

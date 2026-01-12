@@ -6,7 +6,7 @@ defmodule AgentKillSwitch.Agents.Supervisor do
   use DynamicSupervisor
   require Logger
 
-  @tick_interval_ms 1000  # Default 1 second, but configurable per agent
+  @tick_interval_ms 3000  # Default 3 seconds, more realistic
   @max_log_entries 20     # Default max log entries per agent
 
   def start_link(init_arg) do

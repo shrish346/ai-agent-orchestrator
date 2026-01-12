@@ -42,6 +42,7 @@ defmodule AgentKillSwitch.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:bcrypt_elixir, "~> 3.0"},
+      {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end

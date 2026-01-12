@@ -48,6 +48,13 @@ defmodule AgentKillSwitch.Agents.MockAgent do
     # Schedule first tick
     schedule_tick(state.tick_interval_ms)
 
+    # Broadcast initial state immediately
+    Phoenix.PubSub.broadcast(
+      AgentKillSwitch.PubSub,
+      "agents_internal",
+      {:agent_update, state}
+    )
+
     {:ok, state}
   end
 
@@ -81,7 +88,7 @@ defmodule AgentKillSwitch.Agents.MockAgent do
     {new_status, message} = generate_agent_message(state.status)
 
     # Add message to log
-    new_log = add_to_log(state.log, message, state.max_log_entries)
+    new_log = add_to_log(state.log, message, new_status, state.max_log_entries)
 
     # Update state
     new_state = %{
@@ -154,9 +161,13 @@ defmodule AgentKillSwitch.Agents.MockAgent do
     Enum.random(messages)
   end
 
-  defp add_to_log(log, message, max_entries) do
+  defp add_to_log(log, message, status, max_entries) do
     timestamp = DateTime.utc_now() |> DateTime.to_iso8601()
-    entry = "[#{timestamp}] #{message}"
+    entry = %{
+      "timestamp" => timestamp,
+      "message" => message,
+      "status" => Atom.to_string(status)
+    }
 
     # Add to front and truncate
     [entry | log] |> Enum.take(max_entries)
