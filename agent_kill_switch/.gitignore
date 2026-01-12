@@ -1,0 +1,22 @@
+# The directory where the compiled byte-code is stored
+/_build/
+
+# The directory where dependencies are downloaded
+/deps/
+
+# If you use the Phoenix framework, ignore node_modules
+/assets/node_modules/
+/frontend/node_modules/
+
+# Ignore sensitive configuration files
+/config/*.secret.exs
+
+# If you use a local development database
+/*.db
+/*.db-shm
+/*.db-wal
+
+# Common Elixir/Phoenix ignores
+/erl_crash.dump
+/npm-debug.log*
+
