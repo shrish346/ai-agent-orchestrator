@@ -1,6 +1,6 @@
 # Agent Kill Switch
 
-A real-time dashboard for monitoring and terminating mock AI agents built with Phoenix and Elixir.
+A real-time dashboard for monitoring and terminating mock AI agents built with Phoenix and Elixir. I wanted to gain some familiarity with Elixir and Svelte.
 
 ## Overview
 
