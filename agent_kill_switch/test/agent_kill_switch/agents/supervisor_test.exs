@@ -1,4 +1,5 @@
 defmodule AgentKillSwitch.Agents.SupervisorTest do
+  @moduledoc false
   use ExUnit.Case, async: false
 
   alias AgentKillSwitch.Agents.Supervisor
