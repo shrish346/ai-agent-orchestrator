@@ -25,7 +25,7 @@ This application simulates multiple AI agents that periodically emit thoughts an
 - **AgentKillSwitchWeb.AgentChannel**: Phoenix Channel for real-time updates
 - **AgentKillSwitchWeb.AgentController**: HTTP API for agent spawn/kill operations
 
-### Frontend (Svelte - TODO)
+### Frontend (Svelte)
 
 - Real-time dashboard showing agent status
 - Agent logs and kill buttons
